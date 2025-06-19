@@ -1,11 +1,5 @@
 /**
- * @license wysihtml5 v0.3.0
- * https://github.com/xing/wysihtml5
- *
- * Author: Christopher Blum (https://github.com/tiff)
- *
- * Copyright (C) 2012 XING AG
- * Licensed under the MIT license (MIT)
+
  *
  */
 var wysihtml5 = {
@@ -33,13 +27,7 @@ var wysihtml5 = {
   SPACE_KEY:      32,
   DELETE_KEY:     46
 };/**
- * @license Rangy, a cross-browser JavaScript range and selection library
- * http://code.google.com/p/rangy/
- *
- * Copyright 2011, Tim Down
- * Licensed under the MIT license.
- * Version: 1.2.2
- * Build date: 13 November 2011
+ * @license 
  */
 window['rangy'] = (function() {
 
@@ -61,8 +49,7 @@ window['rangy'] = (function() {
 
     /*----------------------------------------------------------------------------------------------------------------*/
 
-    // Trio of functions taken from Peter Michaux's article:
-    // http://peter.michaux.ca/articles/feature-detection-state-of-the-art-browser-scripting
+   
     function isHostMethod(o, p) {
         var t = typeof o[p];
         return t == FUNCTION || (!!(t == OBJECT && o[p])) || t == "unknown";
@@ -360,9 +347,7 @@ rangy.createModule("DomUtil", function(api, module) {
 
     /*----------------------------------------------------------------------------------------------------------------*/
 
-    // Removed use of indexOf because of a bizarre bug in Opera that is thrown in one of the Acid3 tests. I haven't been
-    // able to replicate it outside of the test. The bug is that indexOf returns -1 when called on an Array that
-    // contains just the document as a single element and the value searched for is the document.
+   
     var arrayContains = /*Array.prototype.indexOf ?
         function(arr, val) {
             return arr.indexOf(val) > -1;
@@ -1010,8 +995,7 @@ rangy.createModule("DomUtil", function(api, module) {
     /*----------------------------------------------------------------------------------------------------------------*/
 
     /**
-     * Currently iterates through all nodes in the range on creation until I think of a decent way to do it
-     * TODO: Look into making this a proper iterator, not requiring preloading everything first
+     *
      * @constructor
      */
     function RangeNodeIterator(range, nodeTypes, filter) {
@@ -1138,10 +1122,7 @@ rangy.createModule("DomUtil", function(api, module) {
 
     var createContextualFragment = htmlParsingConforms ?
 
-        // Implementation as per HTML parsing spec, trusting in the browser's implementation of innerHTML. See
-        // discussion and base code for this implementation at issue 67.
-        // Spec: http://html5.org/specs/dom-parsing.html#extensions-to-the-range-interface
-        // Thanks to Aleks Williams.
+        
         function(fragmentStr) {
             // "Let node the context object's start's node."
             var node = this.startContainer;
@@ -3244,9 +3225,7 @@ rangy.createModule("DomUtil", function(api, module) {
     });
 });
 /*
-	Base.js, version 1.1a
-	Copyright 2006-2010, Dean Edwards
-	License: http://www.opensource.org/licenses/mit-license.php
+
 */
 
 var Base = function() {
@@ -3438,22 +3417,14 @@ wysihtml5.browser = (function() {
     },
     
     /**
-     * Whether the browser supports sandboxed iframes
-     * Currently only IE 6+ offers such feature <iframe security="restricted">
-     *
-     * http://msdn.microsoft.com/en-us/library/ms534622(v=vs.85).aspx
-     * http://blogs.msdn.com/b/ie/archive/2008/01/18/using-frames-more-securely.aspx
-     *
-     * HTML5 sandboxed iframes are still buggy and their DOM is not reachable from the outside (except when using postMessage)
+    
      */
     supportsSandboxedIframes: function() {
       return isIE;
     },
 
     /**
-     * IE6+7 throw a mixed content warning when the src of an iframe
-     * is empty/unset or about:blank
-     * window.querySelector is implemented as of IE8
+     
      */
     throwsMixedContentWarningWhenIframeSrcIsEmpty: function() {
       return !("querySelector" in document);
@@ -3548,7 +3519,7 @@ wysihtml5.browser = (function() {
      * @return {Boolean}
      *
      * @example
-     *    wysihtml5.browser.supportsCommand(document, "bold");
+     *  
      */
     supportsCommand: (function() {
       // Following commands are supported but contain bugs in some browsers
@@ -3586,14 +3557,7 @@ wysihtml5.browser = (function() {
     })(),
 
     /**
-     * IE: URLs starting with:
-     *    www., http://, https://, ftp://, gopher://, mailto:, new:, snews:, telnet:, wasis:, file://,
-     *    nntp://, newsrc:, ldap://, ldaps://, outlook:, mic:// and url:
-     * will automatically be auto-linked when either the user inserts them via copy&paste or presses the
-     * space bar when the caret is directly after such an url.
-     * This behavior cannot easily be avoided in IE < 9 since the logic is hardcoded in the mshtml.dll
-     * (related blog post on msdn
-     * http://blogs.msdn.com/b/ieinternals/archive/2009/09/17/prevent-automatic-hyperlinking-in-contenteditable-html.aspx).
+    
      */
     doesAutoLinkingInContentEditable: function() {
       return isIE;
@@ -3672,16 +3636,14 @@ wysihtml5.browser = (function() {
     },
 
     /**
-     * As of now (19.04.2011) only supported by Firefox 4 and Chrome
-     * See https://developer.mozilla.org/en/DOM/Selection/modify
+     *
      */
     supportsSelectionModify: function() {
       return "getSelection" in window && "modify" in window.getSelection();
     },
     
     /**
-     * Whether the browser supports the classList object for fast className manipulation
-     * See https://developer.mozilla.org/en/DOM/element.classList
+     
      */
     supportsClassList: function() {
       return "classList" in testElement;
@@ -3695,13 +3657,10 @@ wysihtml5.browser = (function() {
     },
     
     /**
-     * Whether the browser supports the speech api on the given element
-     * See http://mikepultz.com/2011/03/accessing-google-speech-api-chrome-11/
+    
      *
-     * @example
-     *    var input = document.createElement("input");
-     *    if (wysihtml5.browser.supportsSpeechApiOn(input)) {
-     *      // ...
+     * 
+     *   
      *    }
      */
     supportsSpeechApiOn: function(input) {
@@ -3710,9 +3669,7 @@ wysihtml5.browser = (function() {
     },
     
     /**
-     * IE9 crashes when setting a getter via Object.defineProperty on XMLHttpRequest or XDomainRequest
-     * See https://connect.microsoft.com/ie/feedback/details/650112
-     * or try the POC http://tifftiff.de/ie9_crash/
+     * 
      */
     crashesWhenDefineProperty: function(property) {
       return isIE && (property === "XMLHttpRequest" || property === "XDomainRequest");
@@ -3777,11 +3734,7 @@ wysihtml5.browser = (function() {
     },
     
     /**
-     * Return a clean native array
-     * 
-     * Following will convert a Live NodeList to a proper Array
-     * @example
-     *    var childNodes = wysihtml5.lang.array(document.body.childNodes).get();
+     *
      */
     get: function() {
       var i        = 0,
@@ -3894,8 +3847,7 @@ wysihtml5.browser = (function() {
       
       /**
        * @example
-       *    wysihtml5.lang.string("Hello #{name}").interpolate({ name: "Christopher" });
-       *    // => "Hello Christopher"
+       *    
        */
       interpolate: function(vars) {
         for (var i in vars) {
@@ -3906,8 +3858,7 @@ wysihtml5.browser = (function() {
       
       /**
        * @example
-       *    wysihtml5.lang.string("Hello Tom").replace("Tom").with("Hans");
-       *    // => "Hello Hans"
+       *   
        */
       replace: function(search) {
         return {
@@ -3919,8 +3870,7 @@ wysihtml5.browser = (function() {
     };
   };
 })();/**
- * Find urls in descendant text nodes of an element and auto-links them
- * Inspired by http://james.padolsey.com/javascript/find-and-replace-text-with-javascript/
+ * 
  *
  * @param {Element} element Container element in which to search for urls
  *
@@ -4572,14 +4522,12 @@ wysihtml5.dom.hasElementWithTagName = (function() {
     return cacheEntry.length > 0;
   };
 })();/**
- * High performant way to check whether an element with a specific class name is in the given document
- * Optimized for being heavily executed
- * Unleashes the power of live node lists
+ * 
  *
  * @param {Object} doc The document object of the context where to check
  * @param {String} tagName Upper cased tag name
  * @example
- *    wysihtml5.dom.hasElementWithClassName(document, "foobar");
+ *    
  */
 (function(wysihtml5) {
   var LIVE_CACHE          = {},
@@ -5769,8 +5717,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
   })();
 
 })(wysihtml5);
-// See https://bugzilla.mozilla.org/show_bug.cgi?id=664398
-//
+// See 
 // In Firefox this:
 //      var d = document.createElement("div");
 //      d.innerHTML ='<a href="~"></a>';
@@ -6778,7 +6725,7 @@ wysihtml5.Commands = Base.extend(
    * @param {String} command The command string which to execute (eg. "bold", "italic", "insertUnorderedList")
    * @param {String} [value] The command value parameter, needed for some commands ("createLink", "insertImage", ...), optional for commands that don't require one ("bold", "underline", ...)
    * @example
-   *    commands.exec("insertImage", "http://a1.twimg.com/profile_images/113868655/schrei_twitter_reasonably_small.jpg");
+   *    
    */
   exec: function(command, value) {
     var obj     = wysihtml5.commands[command],
@@ -8965,17 +8912,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
   });
 })(wysihtml5);
 /**
- * Converts speech-to-text and inserts this into the editor
- * As of now (2011/03/25) this only is supported in Chrome >= 11
- *
- * Note that it sends the recorded audio to the google speech recognition api:
- * http://stackoverflow.com/questions/4361826/does-chrome-have-buil-in-speech-recognition-for-input-type-text-x-webkit-speec
- *
- * Current HTML5 draft can be found here
- * http://lists.w3.org/Archives/Public/public-xg-htmlspeech/2011Feb/att-0020/api-draft.html
- * 
- * "Accessing Google Speech API Chrome 11"
- * http://mikepultz.com/2011/03/accessing-google-speech-api-chrome-11/
+ 
  */
 (function(wysihtml5) {
   var dom = wysihtml5.dom;

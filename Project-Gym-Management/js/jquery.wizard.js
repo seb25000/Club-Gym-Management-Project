@@ -1,13 +1,5 @@
 /*
- * jQuery wizard plug-in 3.0.5
- *
- *
- * Copyright (c) 2011 Jan Sundman (jan.sundman[at]aland.net)
- *
- * http://www.thecodemine.org
- *
- * Licensed under the MIT licens:
- *   http://www.opensource.org/licenses/mit-license.php
+ * 
  *
  */
 

@@ -45,7 +45,7 @@ maruti = {
 				copiedEventObject.allDay = allDay;
 					
 				// render the event on the calendar
-				// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+				// the last `true` argument determines if the event "sticks" 
 				$('#fullcalendar').fullCalendar('renderEvent', copiedEventObject, true);
 					
 				// is the "remove after drop" checkbox checked?
